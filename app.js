@@ -83,18 +83,19 @@ app.use((req,res,next)=>{
 });
 
 
-// app.get("/",(req,res)=>{
-//     res.send("Lets start with major project")
-// })
 
 app.listen("8080",()=>{
     console.log("app is listening on port 8080");
 })
 
 
-app.use("/", usersRouter); //  Apply login/signup routes first
-app.use("/listings", listingsRoutes); // Then use the protected routes
+app.use("/", usersRouter);
+app.use("/listings", listingsRoutes);
 app.use("/listings/:id/reviews", reviews);
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 
 
